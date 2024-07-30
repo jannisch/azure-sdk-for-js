@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { JSONValue } from "../index";
+
 export type PatchOperation = ExistingKeyOperation | RemoveOperation;
 
 export const PatchOperationType = {
@@ -13,7 +15,7 @@ export const PatchOperationType = {
 
 export type ExistingKeyOperation = {
   op: keyof typeof PatchOperationType;
-  value: any;
+  value: JSONValue;
   path: string;
 };
 
@@ -24,7 +26,7 @@ export type RemoveOperation = {
 
 export type PatchRequestBody =
   | {
-      operations: PatchOperation[];
-      condition?: string;
-    }
+    operations: PatchOperation[];
+    condition?: string;
+  }
   | PatchOperation[];
