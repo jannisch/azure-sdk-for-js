@@ -3,7 +3,7 @@
 import { QueryFeature } from "../common";
 
 export function supportedQueryFeaturesBuilder(disableNonStreamingOrderByQuery?: boolean): string {
-  const disableListAndSetAggregate = process.env.DISABLE_LIST_AND_SET_AGGREGATE === "true";
+  const disableListAndSetAggregate = typeof process !== "undefined" && process.env && process.env.DISABLE_LIST_AND_SET_AGGREGATE === "true";
   if (disableNonStreamingOrderByQuery && disableListAndSetAggregate) {
     return Object.keys(QueryFeature)
       .filter(
